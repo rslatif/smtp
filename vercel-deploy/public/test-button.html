@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Button</title>
+</head>
+<body>
+    <div style="max-width: 600px; margin: 50px auto; padding: 20px; font-family: Arial, sans-serif;">
+        <h1>Test Button Functionality</h1>
+        
+        <div id="content" style="display: none; padding: 20px; background-color: #f0f0f0;">
+            <h2>Hidden Content</h2>
+            <p>This content was hidden and is now visible!</p>
+            <button onclick="hideContent()" style="background-color: #f44336; color: white; padding: 10px 20px; border: none; cursor: pointer;">
+                Hide Content
+            </button>
+        </div>
+        
+        <button onclick="showContent()" id="showButton" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer;">
+            Show Content
+        </button>
+    </div>
+
+    <script>
+        function showContent() {
+            document.getElementById('content').style.display = 'block';
+            document.getElementById('showButton').style.display = 'none';
+        }
+        
+        function hideContent() {
+            document.getElementById('content').style.display = 'none';
+            document.getElementById('showButton').style.display = 'inline-block';
+        }
+    </script>
+</body>
+</html>

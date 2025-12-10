@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>University Information</title>
+</head>
+<body>
+    <div style="max-width: 600px; margin: 50px auto; padding: 20px; font-family: Arial, sans-serif;">
+        <h1>University Information Sender</h1>
+        
+        <div style="margin-bottom: 20px;">
+            <label for="email">Recipient Email:</label><br>
+            <input type="email" id="email" placeholder="Enter recipient email address" style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+        
+        <button id="sendButton" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer; margin-right: 10px;">
+            Send University Information
+        </button>
+        
+        <div id="emailStatus" style="display: none; margin-top: 20px; padding: 10px;"></div>
+        
+        <div style="margin-top: 30px; padding: 20px; background-color: #f5f5f5; border-radius: 5px;">
+            <h2>Preview Information</h2>
+            
+            <div id="previewContent" style="text-align: center;">
+                <p>Click the button below to preview the information that will be sent:</p>
+                <button id="viewButton" style="background-color: #FF5722; color: white; padding: 12px 24px; border: none; cursor: pointer; font-weight: bold; border-radius: 5px;">
+                    🔍 View Information
+                </button>
+            </div>
+            
+            <div id="studentInfo" style="display: none;">
+                <div style="display: flex; justify-content: space-between; padding: 10px; background-color: #e0e0e0; margin-bottom: 5px;">
+                    <span><strong>Name:</strong></span>
+                    <span>MD. Abdul Lotif</span>
+                </div>
+                
+                <div style="display: flex; justify-content: space-between; padding: 10px; background-color: #e0e0e0; margin-bottom: 5px;">
+                    <span><strong>ID:</strong></span>
+                    <span>2222081018</span>
+                </div>
+                
+                <div style="display: flex; justify-content: space-between; padding: 10px; background-color: #e0e0e0; margin-bottom: 5px;">
+                    <span><strong>Semester:</strong></span>
+                    <span>Fall 2025</span>
+                </div>
+                
+                <div style="display: flex; justify-content: space-between; padding: 10px; background-color: #e0e0e0; margin-bottom: 15px;">
+                    <span><strong>University:</strong></span>
+                    <span>Uttara University</span>
+                </div>
+                
+                <button id="hideButton" style="background-color: #f44336; color: white; padding: 8px 16px; border: none; cursor: pointer;">
+                    Hide Information
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('viewButton').addEventListener('click', function() {
+            document.getElementById('previewContent').style.display = 'none';
+            document.getElementById('studentInfo').style.display = 'block';
+        });
+        
+        document.getElementById('hideButton').addEventListener('click', function() {
+            document.getElementById('previewContent').style.display = 'block';
+            document.getElementById('studentInfo').style.display = 'none';
+        });
+        
+        document.getElementById('sendButton').addEventListener('click', function() {
+            const email = document.getElementById('email').value;
+            if (!email) {
+                showMessage('Please enter a recipient email address', 'error');
+                return;
+            }
+            
+            // Simulate sending email
+            showMessage('Email sent successfully to ' + email + '!', 'success');
+        });
+        
+        function showMessage(message, type) {
+            const statusDiv = document.getElementById('emailStatus');
+            statusDiv.textContent = message;
+            statusDiv.style.display = 'block';
+            
+            if (type === 'success') {
+                statusDiv.style.backgroundColor = '#dff0d8';
+                statusDiv.style.color = '#3c763d';
+            } else {
+                statusDiv.style.backgroundColor = '#f2dede';
+                statusDiv.style.color = '#a94442';
+            }
+        }
+    </script>
+</body>
+</html>
