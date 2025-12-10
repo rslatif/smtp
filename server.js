@@ -56,6 +56,7 @@ app.post('/api/send-email', async (req, res) => {
     }
     
     // If text is not provided, create formatted student information
+    const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : `http://localhost:${PORT}`;
     const emailText = text || `UTTARA UNIVERSITY
 Student Information Portal
 =========================
@@ -63,7 +64,7 @@ Student Information Portal
 You have received student information from Uttara University.
 
 To view the student details, please click on the link below:
-http://localhost:5000/student-info.html
+${baseUrl}/student-info.html
 
 Alternatively, you can copy and paste this link into your web browser.
 
@@ -168,12 +169,12 @@ This is an automated student information email.`;
               Click the button below to securely view the confidential student details.
             </div>
             
-            <a href="http://localhost:5000/student-info.html" class="view-button">👁️ View Student Information</a>
+            <a href="${baseUrl}/student-info.html" class="view-button">👁️ View Student Information</a>
             
             <div class="note">
               <strong>🔒 Secure Access</strong><br>
               If the button doesn't work, copy and paste this link in your browser:<br>
-              <code>http://localhost:5000/student-info.html</code>
+              <code>${baseUrl}/student-info.html</code>
             </div>
           </div>
           
@@ -215,12 +216,8 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'client/build/index.html'));
 });
 
-app.get('/test', (req, res) => {
-  res.sendFile(path.join(__dirname, 'test-button.html'));
-});
-
-app.get('/simple', (req, res) => {
-  res.sendFile(path.join(__dirname, 'simple-test.html'));
+app.get('/student-info.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'student-info.html'));
 });
 
 app.get('*', (req, res) => {

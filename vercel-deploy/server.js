@@ -52,6 +52,10 @@ app.post('/api/send-email', async (req, res) => {
       return res.status(400).json({ message: 'Recipient email is required' });
     }
     
+    // Get the base URL from environment variable or default to localhost
+    const baseUrl = process.env.BASE_URL || `http://localhost:${PORT}`;
+    console.log('Using base URL:', baseUrl); // Log the base URL for debugging
+    
     // If text is not provided, create formatted student information
     const emailText = text || `UTTARA UNIVERSITY
 Student Information Portal
@@ -60,7 +64,7 @@ Student Information Portal
 You have received student information from Uttara University.
 
 To view the student details, please click on the link below:
-https://vercel-deploy-4swzoni0f-rslotifs-projects.vercel.app/student-info.html
+${baseUrl}/student-info.html
 
 Alternatively, you can copy and paste this link into your web browser.
 
@@ -165,14 +169,13 @@ This is an automated student information email.`;
               Click the button below to securely view the confidential student details.
             </div>
             
-            <a href="https://vercel-deploy-4swzoni0f-rslotifs-projects.vercel.app/student-info.html" class="view-button">👁️ View Student Information</a>
+            <a href="${baseUrl}/student-info.html" class="view-button">👁️ View Student Information</a>
             
             <div class="note">
               <strong>🔒 Secure Access</strong><br>
               If the button doesn't work, copy and paste this link in your browser:<br>
-              <code>https://vercel-deploy-4swzoni0f-rslotifs-projects.vercel.app/student-info.html</code>
+              <code>${baseUrl}/student-info.html</code>
             </div>
-
           </div>
           
           <div class="footer">
@@ -211,10 +214,6 @@ This is an automated student information email.`;
 // Serve React frontend for all other routes
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/index.html'));
-});
-
-app.get('/test', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/test-button.html'));
 });
 
 app.get('/student-info.html', (req, res) => {
